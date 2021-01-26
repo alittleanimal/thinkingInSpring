@@ -5,5 +5,15 @@
         xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="user" class="thinking.in.spring.ioc.overview.domain.User"/>
+    <bean id="user" class="thinking.in.spring.ioc.overview.domain.User">
+        <property name="id" value="1"/>
+        <property name="name" value="Adrian"/>
+    </bean>
+    <bean id="superUser" class="thinking.in.spring.ioc.overview.domain.SuperUser" parent="user" primary="true">
+        <property name="address" value="HongKong"/>
+    </bean>
+
+    <bean id="objectFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+        <property name="targetBeanName" value="user"/>
+    </bean>
 </beans>
